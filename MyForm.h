@@ -48,6 +48,11 @@ namespace Graph {
 	private: System::Windows::Forms::TextBox^  textBox2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  textBox3;
+	private: System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::TextBox^  textBox4;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::TextBox^  textBox5;
+	private: System::Windows::Forms::Label^  label5;
 
 
 
@@ -81,6 +86,11 @@ namespace Graph {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -121,7 +131,6 @@ namespace Graph {
 			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->Size = System::Drawing::Size(274, 327);
 			this->dataGridView1->TabIndex = 2;
-			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
 			// 
 			// X
 			// 
@@ -150,11 +159,10 @@ namespace Graph {
 			this->label1->Size = System::Drawing::Size(13, 13);
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"a";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(78, 391);
+			this->textBox1->Location = System::Drawing::Point(78, 394);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(48, 20);
 			this->textBox1->TabIndex = 4;
@@ -194,11 +202,60 @@ namespace Graph {
 			this->textBox3->TabIndex = 8;
 			this->textBox3->Text = L"0,1";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(633, 437);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(142, 29);
+			this->button2->TabIndex = 9;
+			this->button2->Text = L"Zoom";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(190, 437);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(49, 20);
+			this->textBox4->TabIndex = 13;
+			this->textBox4->Text = L"1";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(171, 440);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(13, 13);
+			this->label4->TabIndex = 12;
+			this->label4->Text = L"b";
+			// 
+			// textBox5
+			// 
+			this->textBox5->Location = System::Drawing::Point(78, 436);
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(48, 20);
+			this->textBox5->TabIndex = 11;
+			this->textBox5->Text = L"0";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(59, 438);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(13, 13);
+			this->label5->TabIndex = 10;
+			this->label5->Text = L"a";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(858, 453);
+			this->ClientSize = System::Drawing::Size(858, 497);
+			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox2);
@@ -238,15 +295,16 @@ namespace Graph {
 
 		double h = Convert::ToDouble(textBox3->Text);
 
-/*
-		double xmin_limit = xmin - 1;
-		double xmax_limit = xmax + 1;
 
+		double xmin_limit = xmin - 0.1;
+		double xmax_limit = xmax + 0.1;
+/*
 		double ymin_limit = -1.0;
 		double ymax_limit = 100.0;
 */
 		// Список точек
 		int i = 0;
+		dataGridView1->Rows->Clear();
 		for (double x = xmin; x <= xmax; x += h)
 		{
 			//Добавление на график
@@ -261,12 +319,11 @@ namespace Graph {
 		}
 		LineItem Curve1 = panel->AddCurve("F1(x)", f1_list, Color::Red,SymbolType::Plus);
 		LineItem Curve2 = panel->AddCurve("F2(x)", f2_list, Color::Blue, SymbolType::None);
-		/*
+
 		// Устанавливаем интересующий нас интервал по оси X
 		panel->XAxis->Scale->Min = xmin_limit;
 		panel->XAxis->Scale->Max = xmax_limit;
-
-		// !!!
+/*
 		// Устанавливаем интересующий нас интервал по оси Y
 		panel->YAxis->Scale->Min = ymin_limit;
 		panel->YAxis->Scale->Max = ymax_limit;
@@ -281,9 +338,23 @@ namespace Graph {
 	}
 	private: System::Void zedGraphControl1_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
-private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
-}
-private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	
+	GraphPane^ panel = zedGraphControl1->GraphPane;
+	double xmin = Convert::ToDouble(textBox5->Text);
+	double xmax = Convert::ToDouble(textBox4->Text);
+	// Устанавливаем интересующий нас интервал по оси X
+	panel->XAxis->Scale->Min = xmin;
+	panel->XAxis->Scale->Max = xmax;
+
+	// Вызываем метод AxisChange (), чтобы обновить данные об осях. 
+	// В противном случае на рисунке будет показана только часть графика, 
+	// которая умещается в интервалы по осям, установленные по умолчанию
+	zedGraphControl1->AxisChange();
+	// Обновляем график
+	zedGraphControl1->Invalidate();
+
 }
 };
 }
