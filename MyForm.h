@@ -1,5 +1,6 @@
 #pragma once
-#include <math.h>
+
+#include "Utils.h"
 
 namespace Graph {
 
@@ -103,7 +104,7 @@ namespace Graph {
 			// zedGraphControl1
 			// 
 			this->zedGraphControl1->Location = System::Drawing::Point(38, 30);
-			this->zedGraphControl1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->zedGraphControl1->Margin = System::Windows::Forms::Padding(4);
 			this->zedGraphControl1->Name = L"zedGraphControl1";
 			this->zedGraphControl1->ScrollGrace = 0;
 			this->zedGraphControl1->ScrollMaxX = 0;
@@ -169,13 +170,13 @@ namespace Graph {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(59, 394);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(13, 13);
+			this->label1->Size = System::Drawing::Size(24, 13);
 			this->label1->TabIndex = 3;
-			this->label1->Text = L"a";
+			this->label1->Text = L"a_x";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(78, 394);
+			this->textBox1->Location = System::Drawing::Point(89, 394);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(48, 20);
 			this->textBox1->TabIndex = 4;
@@ -186,13 +187,13 @@ namespace Graph {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(171, 396);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(13, 13);
+			this->label2->Size = System::Drawing::Size(24, 13);
 			this->label2->TabIndex = 5;
-			this->label2->Text = L"b";
+			this->label2->Text = L"b_x";
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(190, 393);
+			this->textBox2->Location = System::Drawing::Point(201, 393);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(49, 20);
 			this->textBox2->TabIndex = 6;
@@ -227,7 +228,7 @@ namespace Graph {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(190, 437);
+			this->textBox4->Location = System::Drawing::Point(201, 437);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(49, 20);
 			this->textBox4->TabIndex = 13;
@@ -238,13 +239,13 @@ namespace Graph {
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(171, 440);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(13, 13);
+			this->label4->Size = System::Drawing::Size(24, 13);
 			this->label4->TabIndex = 12;
-			this->label4->Text = L"b";
+			this->label4->Text = L"b_y";
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(78, 436);
+			this->textBox5->Location = System::Drawing::Point(89, 437);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(48, 20);
 			this->textBox5->TabIndex = 11;
@@ -255,22 +256,22 @@ namespace Graph {
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(59, 438);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(13, 13);
+			this->label5->Size = System::Drawing::Size(24, 13);
 			this->label5->TabIndex = 10;
-			this->label5->Text = L"a";
+			this->label5->Text = L"a_y";
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(430, 394);
+			this->textBox6->Location = System::Drawing::Point(306, 437);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(61, 20);
 			this->textBox6->TabIndex = 14;
-			this->textBox6->Text = L"0,1";
+			this->textBox6->Text = L"1.0";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(412, 396);
+			this->label6->Location = System::Drawing::Point(282, 440);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(18, 13);
 			this->label6->TabIndex = 15;
@@ -305,24 +306,6 @@ namespace Graph {
 
 		}
 #pragma endregion
-	private: 
-		double expo(double x){
-			return exp(2 * x);
-		}
-
-		double expo_der(double x) {
-			return 2 * exp(2 * x);
-		}
-
-		double RK4(double x, double y, double h) {
-			double k1 = expo_der(x);
-			double k2 = expo_der(x + h / 2);
-			double k3 = expo_der(x + h / 2);
-			double k4 = expo_der(x + h);
-
-			return y + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4);
-		}
-
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
 		GraphPane^ panel = zedGraphControl1->GraphPane;
@@ -334,7 +317,7 @@ namespace Graph {
 		double xmin = Convert::ToDouble(textBox1->Text);
 		double xmax = Convert::ToDouble(textBox2->Text);
 
-		double h = Convert::ToDouble(textBox3->Text);
+		double step = Convert::ToDouble(textBox3->Text);
 
 
 		double xmin_limit = xmin - 0.1;
@@ -347,21 +330,25 @@ namespace Graph {
 		int i = 0;
 		dataGridView1->Rows->Clear();
 		double y0 = Convert::ToDouble(textBox6->Text);
-		for (double x = xmin; x <= xmax; x += h)
+
+		for (double x = xmin; x <= xmax; x += step)
 		{
-			double y_expo = expo(x);
-			double y_RK4 = RK4(x, y0, h);
+			double y_function_1 = utils::function_1(x);
+			double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1,
+														   utils::function_1_derivative, 
+														   step, x, y0);
 			//Добавление на график
-			f1_list->Add(x, y_expo);
-			f2_list->Add(x, y_RK4);
+			f1_list->Add(x, y_function_1);
+			f2_list->Add(x, y_funtion_1_RK_4);
 			//Печать в таблицу
 			dataGridView1->Rows->Add();
 			dataGridView1->Rows[i]->Cells[0]->Value = x; 			
-			dataGridView1->Rows[i]->Cells[1]->Value = floor(y_expo * 1000) / 1000;
-			dataGridView1->Rows[i]->Cells[2]->Value = floor(y_RK4 * 1000) / 1000;
-			y0 = y_RK4;
+			dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
+			dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
+			y0 = y_funtion_1_RK_4;
 			i++;
 		}
+
 		LineItem Curve1 = panel->AddCurve("F1(x)", f1_list, Color::Red,SymbolType::None);
 		LineItem Curve2 = panel->AddCurve("F2(x)", f2_list, Color::Blue, SymbolType::None);
 
@@ -384,7 +371,7 @@ namespace Graph {
 	private: System::Void zedGraphControl1_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	
 	GraphPane^ panel = zedGraphControl1->GraphPane;
 	double xmin = Convert::ToDouble(textBox5->Text);
