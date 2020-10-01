@@ -331,7 +331,10 @@ namespace Graph {
 		dataGridView1->Rows->Clear();
 		double y0 = Convert::ToDouble(textBox6->Text);
 
-		for (double x = xmin; x <= xmax; x += step)
+		f1_list->Add(xmin, y0);
+		f2_list->Add(xmin, y0);
+
+		for (double x = xmin + step; x <= xmax; x += step)
 		{
 			double y_function_1 = utils::function_1(x);
 			double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1,
