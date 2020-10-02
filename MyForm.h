@@ -329,31 +329,48 @@ namespace Graph {
 		// Список точек
 		int i = 0;
 		dataGridView1->Rows->Clear();
-		double y0 = Convert::ToDouble(textBox6->Text);
+		/*double y0 = Convert::ToDouble(textBox6->Text);*/
 
-		f1_list->Add(xmin, y0);
-		f2_list->Add(xmin, y0);
+		double y1 = Convert::ToDouble(textBox6->Text);
+		double y2 = Convert::ToDouble(textBox6->Text);
 
-		for (double x = xmin + step; x <= xmax; x += step)
+		/*f1_list->Add(xmin, y0);*/
+		f2_list->Add(xmin, y1);
+
+		/*for (double x = xmin + step; x <= xmax; x += step)*/
+		for (double y1 = xmin + step; y1 <= xmax; y1 += step)
 		{
-			double y_function_1 = utils::function_1(x);
-			double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1,
-														   utils::function_1_derivative, 
-														   step, x, y0);
+			double x = 0;
+			//double y_function_1 = utils::function_1(x);
+			//double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1,
+			//											   utils::function_1_derivative, 
+			//											   step, x, y0);
+
+			std::vector<double> y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1,
+														   utils::calc_func_1, 
+				                                           utils::calc_func_2,
+														   step, x, y1, y2);
+
+			double y1_next = y_funtion_1_RK_4[0];
+			double y2_next = y_funtion_1_RK_4[1];
+
 			//Добавление на график
-			f1_list->Add(x, y_function_1);
-			f2_list->Add(x, y_funtion_1_RK_4);
+			/*f1_list->Add(x, y_function_1);*/
+			f2_list->Add(y1_next, y2_next);
 			//Печать в таблицу
 			dataGridView1->Rows->Add();
-			dataGridView1->Rows[i]->Cells[0]->Value = x; 			
-			dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
-			dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
-			y0 = y_funtion_1_RK_4;
+			/*dataGridView1->Rows[i]->Cells[0]->Value = x;*/
+			dataGridView1->Rows[i]->Cells[2]->Value = floor(y1_next * 1000) / 1000;
+			/*dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;*/
+			dataGridView1->Rows[i]->Cells[2]->Value = floor(y2_next * 1000) / 1000;
+			/*y0 = y_funtion_1_RK_4;*/
+			y1 = y1_next;
+			y2 = y2_next;
 			i++;
 		}
 
-		LineItem Curve1 = panel->AddCurve("F1(x)", f1_list, Color::Red,SymbolType::None);
-		LineItem Curve2 = panel->AddCurve("F2(x)", f2_list, Color::Blue, SymbolType::None);
+		/*LineItem Curve1 = panel->AddCurve("F1(x)", f1_list, Color::Red,SymbolType::None);*/
+		LineItem^ Curve2 = panel->AddCurve("F2(x)", f2_list, Color::Blue, SymbolType::None);
 
 		// Устанавливаем интересующий нас интервал по оси X
 		panel->XAxis->Scale->Min = xmin_limit;
