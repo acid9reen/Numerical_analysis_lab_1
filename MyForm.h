@@ -214,7 +214,7 @@ namespace Graph {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(61, 20);
 			this->textBox3->TabIndex = 8;
-			this->textBox3->Text = L"0.001";
+			this->textBox3->Text = L"0,001";
 			// 
 			// button2
 			// 
@@ -266,7 +266,7 @@ namespace Graph {
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(61, 20);
 			this->textBox6->TabIndex = 14;
-			this->textBox6->Text = L"1.0";
+			this->textBox6->Text = L"1,0";
 			// 
 			// label6
 			// 
