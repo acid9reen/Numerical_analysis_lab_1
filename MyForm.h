@@ -376,9 +376,8 @@ namespace Graph {
 		for (double x = xmin + step; x <= xmax; x += step)
 		{
 			double y_function_1 = utils::function_1(x);
-			double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1,
-				utils::function_1_derivative,
-				step, x, y0);
+			double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1_derivative, step, x, y0);
+
 			//Добавление на график
 			f1_list->Add(x, y_function_1);
 			f2_list->Add(x, y_funtion_1_RK_4);
