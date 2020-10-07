@@ -10,7 +10,7 @@ namespace utils
 	//
 
 	typedef std::function<double(double, double)> ddd_function;
-	typedef std::function<double(ddd_function, double, double, double)> methdod;
+	typedef std::function<double(ddd_function, double, double, double)> method;
 
 	//
 	// User defined functions
@@ -29,5 +29,5 @@ namespace utils
 	// Usefull functions
 	//
 
-	double* method_wrapper();
+	double* method_wrapper(method);
 }
