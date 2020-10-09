@@ -31,8 +31,8 @@ namespace utils
 	//
 
 	
-	double* next_point(num_method method, ddd_function func,
-					   double x, double y, double step, double eps);	
+	std::vector<double> next_point(num_method method, ddd_function func,
+								   double x, double y, double step, double eps);	
 	std::vector<double> next_point_with_step_conrol(num_method method, ddd_function func,
 													double x, double y, double step, double eps);
 }

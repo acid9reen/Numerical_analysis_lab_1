@@ -33,12 +33,12 @@ double utils::runge_kutta_4(utils::ddd_function func_der,
 // Usefull functions
 //
 
-double* utils::next_point(num_method method, ddd_function func, double x, double y, double step, double eps)
+std::vector<double> utils::next_point(num_method method, ddd_function func, double x, double y, double step, double eps)
 {
 	y = method(func, step, x, y);
 	x += step;
 	
-	double point[2] = {x, y};
+	std::vector<double> point = { x, y, step };
 
 	return point;
 }
