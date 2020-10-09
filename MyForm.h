@@ -387,7 +387,15 @@ namespace Graph {
 
 		while (true)
 		{
-			new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_1_derivative, xmin, y0, step, eps);
+			if (checkBox1->Checked == true)
+			{
+				new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_1_derivative, xmin, y0, step, eps);
+			}
+			else
+			{
+				new_point = utils::next_point(utils::runge_kutta_4, utils::function_1_derivative, xmin, y0, step, eps);
+			}
+			
 			xmin = new_point[0];
 			y_funtion_1_RK_4 = new_point[1];
 			y_function_1     = utils::function_1(xmin);
