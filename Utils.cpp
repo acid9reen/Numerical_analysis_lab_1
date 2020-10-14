@@ -14,6 +14,10 @@ double utils::function_1_derivative(double x, double u /* =0 */)
 	return 2 * u;
 }
 
+double utils::function_2_derivative(double x, double u /* =0 */) {
+	return ((pow(x, 3) + 1) / (pow(x, 5) + 1)) * pow(u, 2) + u - pow(u, 3) * sin(10 * x);
+}
+
 //
 // Numerical methods
 //

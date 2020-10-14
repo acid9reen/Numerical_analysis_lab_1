@@ -20,6 +20,8 @@ namespace utils
 	double function_1(double x, double y0);
 	double function_1_derivative(double x, double y);
 
+	//main task 1
+	double function_2_derivative(double x, double y);
 	//
 	// Numerical methods
 	//

@@ -70,6 +70,9 @@ namespace Graph {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::RadioButton^ radioButton1;
+	private: System::Windows::Forms::RadioButton^ radioButton2;
+	private: System::Windows::Forms::RadioButton^ radioButton3;
 
 
 
@@ -117,6 +120,9 @@ namespace Graph {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -375,11 +381,47 @@ namespace Graph {
 			this->label11->Text = L"Параметр для контроля ЛП:";
 			this->label11->Click += gcnew System::EventHandler(this, &MyForm::label11_Click);
 			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(415, 553);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(87, 21);
+			this->radioButton1->TabIndex = 23;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"Test task";
+			this->radioButton1->UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(415, 583);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(101, 21);
+			this->radioButton2->TabIndex = 24;
+			this->radioButton2->TabStop = true;
+			this->radioButton2->Text = L"Main task 1";
+			this->radioButton2->UseVisualStyleBackColor = true;
+			// 
+			// radioButton3
+			// 
+			this->radioButton3->AutoSize = true;
+			this->radioButton3->Location = System::Drawing::Point(415, 613);
+			this->radioButton3->Name = L"radioButton3";
+			this->radioButton3->Size = System::Drawing::Size(101, 21);
+			this->radioButton3->TabIndex = 25;
+			this->radioButton3->TabStop = true;
+			this->radioButton3->Text = L"Main task 2";
+			this->radioButton3->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1243, 658);
+			this->Controls->Add(this->radioButton3);
+			this->Controls->Add(this->radioButton2);
+			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
@@ -404,6 +446,7 @@ namespace Graph {
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -435,47 +478,87 @@ namespace Graph {
 		int i = 0;
 		dataGridView1->Rows->Clear();
 		double u0 = Convert::ToDouble(initial_u->Text);
-		double u0_num = u0;
+		double u0_num;
 
 		true_list->Add(xmin, u0);
 		num_list->Add(xmin, u0);
 
-		double y_funtion_1_RK_4;
-		double y_function_1;
-		std::vector<double> new_point;
+		if (radioButton1->Checked) {
+			u0_num = u0;
 
-		while (true)
-		{
-			if (step_control->Checked == true)
+			double y_funtion_1_RK_4;
+			double y_function_1;
+			std::vector<double> new_point;
+
+			while (true)
 			{
-				new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+				if (step_control->Checked == true)
+				{
+					new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+				}
+				else
+				{
+					new_point = utils::next_point(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+				}
+
+				xmin = new_point[0];
+				if (xmin > xmax)
+					break;
+
+				y_funtion_1_RK_4 = new_point[1];
+				y_function_1 = utils::function_1(xmin, u0);
+
+
+				true_list->Add(xmin, y_function_1);
+				num_list->Add(xmin, y_funtion_1_RK_4);
+
+				dataGridView1->Rows->Add();
+				dataGridView1->Rows[i]->Cells[0]->Value = xmin;
+				dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
+				dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
+				dataGridView1->Rows[i]->Cells[3]->Value = floor((y_function_1 - y_funtion_1_RK_4) * 1000) / 1000;
+				u0_num = y_funtion_1_RK_4;
+				step = new_point[2];
+				i++;
+
 			}
-			else
-			{
-				new_point = utils::next_point(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
-			}
-			
-			xmin = new_point[0];
-			y_funtion_1_RK_4 = new_point[1];
-			y_function_1     = utils::function_1(xmin, u0);
-
-
-			true_list->Add(xmin, y_function_1);
-			num_list->Add(xmin, y_funtion_1_RK_4);
-
-			dataGridView1->Rows->Add();
-			dataGridView1->Rows[i]->Cells[0]->Value = xmin;
-			dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
-			dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
-			dataGridView1->Rows[i]->Cells[3]->Value = floor((y_function_1 - y_funtion_1_RK_4)*1000)/1000;
-			u0_num = y_funtion_1_RK_4;
-			step = new_point[2];
-			i++;
-			if (xmin > xmax)
-				break;
-
 		}
+		
+		if (radioButton2->Checked) {
+			//calc?
+			u0_num = 1;
 
+			double y_funtion_2_RK_4;
+			std::vector<double> new_point;
+
+			while (true)
+			{
+				if (step_control->Checked == true)
+				{
+					new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_2_derivative, xmin, u0_num, step, eps);
+				}
+				else
+				{
+					new_point = utils::next_point(utils::runge_kutta_4, utils::function_2_derivative, xmin, u0_num, step, eps);
+				}
+
+				xmin = new_point[0];
+				if (xmin > xmax)
+					break;
+				y_funtion_2_RK_4 = new_point[1];
+
+				num_list->Add(xmin, y_funtion_2_RK_4);
+
+				dataGridView1->Rows->Add();
+				dataGridView1->Rows[i]->Cells[0]->Value = xmin;
+				dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_2_RK_4 * 1000) / 1000;
+				u0_num = y_funtion_2_RK_4;
+				step = new_point[2];
+				i++;
+				
+
+			}
+		}
 		//for (double x = xmin + step; x <= xmax; x += step)
 		//{
 		//	double y_function_1 = utils::function_1(x);
@@ -538,6 +621,8 @@ private: System::Void label9_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
