@@ -161,6 +161,7 @@ namespace Graph {
 			this->dataGridView1->RowHeadersWidth = 49;
 			this->dataGridView1->Size = System::Drawing::Size(413, 402);
 			this->dataGridView1->TabIndex = 2;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
 			// 
 			// X
 			// 
@@ -466,6 +467,7 @@ namespace Graph {
 			dataGridView1->Rows[i]->Cells[0]->Value = xmin;
 			dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
 			dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
+			dataGridView1->Rows[i]->Cells[3]->Value = floor((y_function_1 - y_funtion_1_RK_4)*1000)/1000;
 			u0_num = y_funtion_1_RK_4;
 			step = new_point[2];
 			i++;
@@ -534,6 +536,8 @@ namespace Graph {
 private: System::Void label9_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 };
 }
