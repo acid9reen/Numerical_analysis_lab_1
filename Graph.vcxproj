@@ -145,10 +145,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="integrators.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="integrators.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

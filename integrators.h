@@ -28,3 +28,7 @@ public:
 	Point_info next_point_with_step_control();
 };
 
+class integrators
+{
+};
+
