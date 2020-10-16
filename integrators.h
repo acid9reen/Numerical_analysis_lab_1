@@ -17,18 +17,14 @@ private:
 	};
 
 	Point_info point_info;
+	ddd_function func;
 	double mul_count;
 	double div_count;
 	double eps;
 
 public:
-	integrator(ddd_function func, double x, double v, double step, double eps_);
+	integrator(ddd_function func_, double x, double v, double step, double eps_);
 	double runge_kutta_4();
 	Point_info next_point();
 	Point_info next_point_with_step_control();
 };
-
-class integrators
-{
-};
-
