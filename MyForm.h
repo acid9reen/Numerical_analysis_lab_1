@@ -470,10 +470,10 @@ namespace Graph {
 
 		double xmin_limit = xmin - 0.1;
 		double xmax_limit = xmax + 0.1;
-/*
-		double ymin_limit = -1.0;
-		double ymax_limit = 100.0;
-*/
+
+		/*double ymin_limit = -1.0;
+		double ymax_limit = 100.0;*/
+
 		// Список точек
 		int i = 0;
 		dataGridView1->Rows->Clear();
