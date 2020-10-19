@@ -6,7 +6,7 @@
 
 double utils::function_1(double x, double u0 /* =0 */)
 {
-	return u0*exp(2 * x);
+	return u0 * exp(2 * x);
 }
 
 double utils::function_1_derivative(double x, double u /* =0 */)

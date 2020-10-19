@@ -2,11 +2,11 @@
 
 #include <functional>
 
-class integrator
+class Integrator
 {
 	typedef std::function<double(double, double)> ddd_function;
 
-private:
+public:
 	struct Point_info
 	{
 		double x;
@@ -17,11 +17,11 @@ private:
 		double div_count;
 		double mul_count;
 
-
+		Point_info() {};
 		Point_info(double x_, double v_, double v2_=0, double step_=0, 
 				   double error_=0, double mul_count_=0, double div_count_=0) :
 
-			x(x), v(v_), v2(v2_), step(step_), error(error_),
+			x(x_), v(v_), v2(v2_), step(step_), error(error_),
 			mul_count(mul_count_), div_count(div_count_) {};
 	};
 
@@ -39,6 +39,7 @@ private:
 			min_step(min_step_), min_step_x(min_step_x_) {};
 	};
 
+private:
 	ddd_function func;
 	double step;
 	double eps;
@@ -61,9 +62,9 @@ private:
 	double _runge_kutta_4(double x, double v, double step);
 
 public:
-	integrator(ddd_function func_, double step,
+	Integrator(ddd_function func_, double step,
 			   double eps_, double max_iters_);
-	integrator::Point_info next_point(double x, double v);
-	integrator::Point_info next_point_with_step_control(double x, double v);
-	integrator::Max_min_step get_max_min_step();
+	Integrator::Point_info next_point(double x, double v);
+	Integrator::Point_info next_point_with_step_control(double x, double v);
+	Integrator::Max_min_step get_max_min_step();
 };

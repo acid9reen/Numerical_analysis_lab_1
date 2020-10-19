@@ -1,5 +1,6 @@
 #pragma once
 
+#include "integrators.h"
 #include "Utils.h"
 
 namespace Graph {
@@ -480,85 +481,67 @@ namespace Graph {
 		double u0 = Convert::ToDouble(initial_u->Text);
 		double u0_num;
 
-		true_list->Add(xmin, u0);
-		num_list->Add(xmin, u0);
+		/*true_list->Add(xmin, u0);
+		num_list->Add(xmin, u0);*/
 
-		if (radioButton1->Checked) {
-			u0_num = u0;
-
-			double y_funtion_1_RK_4;
-			double y_function_1;
-			std::vector<double> new_point;
+		if (radioButton1->Checked) 
+		{
+			Integrator integrator(utils::function_1_derivative, step, eps, 10000 /*max iters*/);
+			Integrator::Point_info point_info;
+			double y_funtion_2_RK_4;
 
 			while (true)
 			{
-				if (step_control->Checked == true)
+
+				if (step_control->Checked)
 				{
-					new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+					point_info = integrator.next_point_with_step_control(xmin, u0);
 				}
 				else
 				{
-					new_point = utils::next_point(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+					point_info = integrator.next_point(xmin, u0);
 				}
 
-				xmin = new_point[0];
+				xmin = point_info.x;
+				u0 = point_info.v;
+
+				num_list->Add(xmin, u0);
+
 				if (xmin > xmax)
 					break;
-
-				y_funtion_1_RK_4 = new_point[1];
-				y_function_1 = utils::function_1(xmin, u0);
-
-
-				true_list->Add(xmin, y_function_1);
-				num_list->Add(xmin, y_funtion_1_RK_4);
-
-				dataGridView1->Rows->Add();
-				dataGridView1->Rows[i]->Cells[0]->Value = xmin;
-				dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
-				dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
-				dataGridView1->Rows[i]->Cells[3]->Value = floor((y_function_1 - y_funtion_1_RK_4) * 1000) / 1000;
-				u0_num = y_funtion_1_RK_4;
-				step = new_point[2];
-				i++;
-
 			}
 		}
 		
-		if (radioButton2->Checked) {
-			//calc?
-			u0_num = 1;
+		//if (radioButton2->Checked) 
+		//{
+		//	Integrator integrator(utils::function_2_derivative, step, eps, 10000 /*max iters*/);
+		//	auto point_info = new Integrator::Point_info(0, 0);
+		//	double y_funtion_2_RK_4;
 
-			double y_funtion_2_RK_4;
-			std::vector<double> new_point;
+		//	while (true)
+		//	{
 
-			while (true)
-			{
-				if (step_control->Checked == true)
-				{
-					new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_2_derivative, xmin, u0_num, step, eps);
-				}
-				else
-				{
-					new_point = utils::next_point(utils::runge_kutta_4, utils::function_2_derivative, xmin, u0_num, step, eps);
-				}
+		//		if (step_control->Checked)
+		//		{
+		//			point_info = &(integrator.next_point_with_step_control(xmin, u0));
+		//		}
+		//		else
+		//		{
+		//			point_info = &(integrator.next_point(xmin, u0));
+		//		}
 
-				xmin = new_point[0];
-				if (xmin > xmax)
-					break;
-				y_funtion_2_RK_4 = new_point[1];
+		//		xmin = point_info->x;
+		//		u0 = point_info->v;
 
-				num_list->Add(xmin, y_funtion_2_RK_4);
+		//		num_list->Add(xmin, u0);
 
-				dataGridView1->Rows->Add();
-				dataGridView1->Rows[i]->Cells[0]->Value = xmin;
-				dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_2_RK_4 * 1000) / 1000;
-				u0_num = y_funtion_2_RK_4;
-				step = new_point[2];
-				i++;
-				
+		//		if (xmin > xmax)
+		//			break;
+		//	}
 
-			}
-		}
+		//	
+		//}
+
 		//for (double x = xmin + step; x <= xmax; x += step)
 		//{
 		//	double y_function_1 = utils::function_1(x);
