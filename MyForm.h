@@ -40,36 +40,67 @@ namespace Graph {
 	private: ZedGraph::ZedGraphControl^  zedGraphControl1;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  X;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  F_1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  F_2;
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::TextBox^ initial_x;
-
+	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  textBox2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::TextBox^  textBox3;
-
-	private: System::Windows::Forms::TextBox^  textBox4;
-	private: System::Windows::Forms::Label^  label4;
-	private: System::Windows::Forms::TextBox^  textBox5;
-	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::TextBox^ initial_u;
 
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label6;
+
+
+	private: System::Windows::Forms::TextBox^ initial_a;
+	private: System::Windows::Forms::TextBox^ initial_c;
+
+
+	private: System::Windows::Forms::TextBox^ initial_b;
+
+
+
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::TextBox^ initial_u_der;
+
+	private: System::Windows::Forms::Label^ label4;
+
+
+
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::CheckBox^ checkBox2;
+	private: System::Windows::Forms::CheckBox^ checkBox3;
+	private: System::Windows::Forms::TextBox^ initial_eps;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::CheckBox^ step_control;
+	private: System::Windows::Forms::TextBox^ initial_iter;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ X;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ function;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NM_function;
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
-	private: System::Windows::Forms::CheckBox^ step_control;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column3;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 
-	private: System::Windows::Forms::TextBox^ textBox7;
-	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::PageSetupDialog^ pageSetupDialog1;
-	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::Label^ label10;
-	private: System::Windows::Forms::Label^ label11;
+
+
+
+
+
+
+
+
 
 
 
@@ -94,35 +125,44 @@ namespace Graph {
 			this->zedGraphControl1 = (gcnew ZedGraph::ZedGraphControl());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->X = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->function = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->NM_function = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->initial_x = (gcnew System::Windows::Forms::TextBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->initial_u = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->step_control = (gcnew System::Windows::Forms::CheckBox());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+			this->initial_a = (gcnew System::Windows::Forms::TextBox());
+			this->initial_c = (gcnew System::Windows::Forms::TextBox());
+			this->initial_b = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->pageSetupDialog1 = (gcnew System::Windows::Forms::PageSetupDialog());
 			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->initial_u_der = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
+			this->initial_eps = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->step_control = (gcnew System::Windows::Forms::CheckBox());
+			this->initial_iter = (gcnew System::Windows::Forms::TextBox());
 			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->X = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->function = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NM_function = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// zedGraphControl1
 			// 
-			this->zedGraphControl1->Location = System::Drawing::Point(29, 37);
+			this->zedGraphControl1->Location = System::Drawing::Point(37, 27);
 			this->zedGraphControl1->Margin = System::Windows::Forms::Padding(5);
 			this->zedGraphControl1->Name = L"zedGraphControl1";
 			this->zedGraphControl1->ScrollGrace = 0;
@@ -138,10 +178,10 @@ namespace Graph {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(843, 494);
+			this->button1->Location = System::Drawing::Point(844, 475);
 			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(233, 57);
+			this->button1->Size = System::Drawing::Size(189, 36);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Draw";
 			this->button1->UseVisualStyleBackColor = true;
@@ -150,18 +190,247 @@ namespace Graph {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
 				this->X, this->function,
-					this->NM_function, this->Column1
+					this->NM_function, this->Column1, this->Column2, this->Column5, this->Column3, this->Column4
 			});
 			this->dataGridView1->Location = System::Drawing::Point(745, 37);
 			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->RowHeadersWidth = 49;
-			this->dataGridView1->Size = System::Drawing::Size(413, 402);
+			this->dataGridView1->Size = System::Drawing::Size(756, 402);
 			this->dataGridView1->TabIndex = 2;
-			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(79, 485);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(30, 17);
+			this->label1->TabIndex = 3;
+			this->label1->Text = L"a_x";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(119, 485);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(63, 22);
+			this->textBox1->TabIndex = 4;
+			this->textBox1->Text = L"0";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(79, 524);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(30, 17);
+			this->label2->TabIndex = 5;
+			this->label2->Text = L"b_x";
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(118, 524);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(64, 22);
+			this->textBox2->TabIndex = 6;
+			this->textBox2->Text = L"1";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(220, 485);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(16, 17);
+			this->label3->TabIndex = 7;
+			this->label3->Text = L"h";
+			// 
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(244, 482);
+			this->textBox3->Margin = System::Windows::Forms::Padding(4);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(80, 22);
+			this->textBox3->TabIndex = 8;
+			this->textBox3->Text = L"0,01";
+			// 
+			// initial_u
+			// 
+			this->initial_u->Location = System::Drawing::Point(406, 482);
+			this->initial_u->Margin = System::Windows::Forms::Padding(4);
+			this->initial_u->Name = L"initial_u";
+			this->initial_u->Size = System::Drawing::Size(80, 22);
+			this->initial_u->TabIndex = 14;
+			this->initial_u->Text = L"1,0";
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(362, 485);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(34, 17);
+			this->label6->TabIndex = 15;
+			this->label6->Text = L"u(0)";
+			// 
+			// initial_a
+			// 
+			this->initial_a->Location = System::Drawing::Point(564, 482);
+			this->initial_a->Margin = System::Windows::Forms::Padding(4);
+			this->initial_a->Name = L"initial_a";
+			this->initial_a->Size = System::Drawing::Size(32, 22);
+			this->initial_a->TabIndex = 16;
+			this->initial_a->Text = L"1,0";
+			// 
+			// initial_c
+			// 
+			this->initial_c->Location = System::Drawing::Point(564, 552);
+			this->initial_c->Margin = System::Windows::Forms::Padding(4);
+			this->initial_c->Name = L"initial_c";
+			this->initial_c->Size = System::Drawing::Size(32, 22);
+			this->initial_c->TabIndex = 17;
+			this->initial_c->Text = L"1,0";
+			// 
+			// initial_b
+			// 
+			this->initial_b->Location = System::Drawing::Point(564, 517);
+			this->initial_b->Margin = System::Windows::Forms::Padding(4);
+			this->initial_b->Name = L"initial_b";
+			this->initial_b->Size = System::Drawing::Size(32, 22);
+			this->initial_b->TabIndex = 18;
+			this->initial_b->Text = L"1,0";
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(540, 482);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(16, 17);
+			this->label7->TabIndex = 19;
+			this->label7->Text = L"a";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(540, 519);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(16, 17);
+			this->label8->TabIndex = 20;
+			this->label8->Text = L"b";
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(541, 552);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(15, 17);
+			this->label9->TabIndex = 21;
+			this->label9->Text = L"c";
+			// 
+			// initial_u_der
+			// 
+			this->initial_u_der->Location = System::Drawing::Point(404, 521);
+			this->initial_u_der->Margin = System::Windows::Forms::Padding(4);
+			this->initial_u_der->Name = L"initial_u_der";
+			this->initial_u_der->Size = System::Drawing::Size(80, 22);
+			this->initial_u_der->TabIndex = 22;
+			this->initial_u_der->Text = L"1,0";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(359, 522);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(37, 17);
+			this->label4->TabIndex = 23;
+			this->label4->Text = L"u\'(0)";
+			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(651, 482);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(59, 21);
+			this->checkBox1->TabIndex = 24;
+			this->checkBox1->Text = L"u\'(u)";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
+			// checkBox2
+			// 
+			this->checkBox2->AutoSize = true;
+			this->checkBox2->Location = System::Drawing::Point(651, 517);
+			this->checkBox2->Name = L"checkBox2";
+			this->checkBox2->Size = System::Drawing::Size(54, 21);
+			this->checkBox2->TabIndex = 25;
+			this->checkBox2->Text = L"u(x)";
+			this->checkBox2->UseVisualStyleBackColor = true;
+			// 
+			// checkBox3
+			// 
+			this->checkBox3->AutoSize = true;
+			this->checkBox3->Location = System::Drawing::Point(651, 551);
+			this->checkBox3->Name = L"checkBox3";
+			this->checkBox3->Size = System::Drawing::Size(57, 21);
+			this->checkBox3->TabIndex = 26;
+			this->checkBox3->Text = L"u\'(x)";
+			this->checkBox3->UseVisualStyleBackColor = true;
+			// 
+			// initial_eps
+			// 
+			this->initial_eps->Location = System::Drawing::Point(244, 524);
+			this->initial_eps->Margin = System::Windows::Forms::Padding(4);
+			this->initial_eps->Name = L"initial_eps";
+			this->initial_eps->Size = System::Drawing::Size(80, 22);
+			this->initial_eps->TabIndex = 27;
+			this->initial_eps->Text = L"0,001";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(220, 524);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(17, 17);
+			this->label5->TabIndex = 28;
+			this->label5->Text = L"E";
+			// 
+			// step_control
+			// 
+			this->step_control->AutoSize = true;
+			this->step_control->Location = System::Drawing::Point(891, 526);
+			this->step_control->Name = L"step_control";
+			this->step_control->Size = System::Drawing::Size(96, 21);
+			this->step_control->TabIndex = 29;
+			this->step_control->Text = L"with contol";
+			this->step_control->UseVisualStyleBackColor = true;
+			// 
+			// initial_iter
+			// 
+			this->initial_iter->Location = System::Drawing::Point(244, 563);
+			this->initial_iter->Margin = System::Windows::Forms::Padding(4);
+			this->initial_iter->Name = L"initial_iter";
+			this->initial_iter->Size = System::Drawing::Size(80, 22);
+			this->initial_iter->TabIndex = 30;
+			this->initial_iter->Text = L"500";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(180, 563);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(57, 17);
+			this->label10->TabIndex = 31;
+			this->label10->Text = L"max Iter";
 			// 
 			// X
 			// 
@@ -173,7 +442,7 @@ namespace Graph {
 			// 
 			// function
 			// 
-			this->function->HeaderText = L"function";
+			this->function->HeaderText = L"u";
 			this->function->MinimumWidth = 6;
 			this->function->Name = L"function";
 			this->function->ReadOnly = true;
@@ -181,7 +450,7 @@ namespace Graph {
 			// 
 			// NM_function
 			// 
-			this->NM_function->HeaderText = L"NM_function";
+			this->NM_function->HeaderText = L"u\'";
 			this->NM_function->MinimumWidth = 6;
 			this->NM_function->Name = L"NM_function";
 			this->NM_function->ReadOnly = true;
@@ -189,214 +458,67 @@ namespace Graph {
 			// 
 			// Column1
 			// 
-			this->Column1->HeaderText = L"e";
+			this->Column1->HeaderText = L"u2";
 			this->Column1->MinimumWidth = 6;
 			this->Column1->Name = L"Column1";
-			this->Column1->Width = 120;
+			this->Column1->Width = 125;
 			// 
-			// label1
+			// Column2
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(26, 476);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(32, 17);
-			this->label1->TabIndex = 3;
-			this->label1->Text = L"x(0)";
+			this->Column2->HeaderText = L"h";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 70;
 			// 
-			// initial_x
+			// Column5
 			// 
-			this->initial_x->Location = System::Drawing::Point(78, 477);
-			this->initial_x->Margin = System::Windows::Forms::Padding(4);
-			this->initial_x->Name = L"initial_x";
-			this->initial_x->Size = System::Drawing::Size(63, 22);
-			this->initial_x->TabIndex = 4;
-			this->initial_x->Text = L"0";
+			this->Column5->HeaderText = L"err_est";
+			this->Column5->MinimumWidth = 6;
+			this->Column5->Name = L"Column5";
+			this->Column5->Width = 125;
 			// 
-			// label2
+			// Column3
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(218, 553);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(47, 17);
-			this->label2->TabIndex = 5;
-			this->label2->Text = L"x_max";
+			this->Column3->HeaderText = L"c1*";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 50;
 			// 
-			// textBox2
+			// Column4
 			// 
-			this->textBox2->Location = System::Drawing::Point(291, 553);
-			this->textBox2->Margin = System::Windows::Forms::Padding(4);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(64, 22);
-			this->textBox2->TabIndex = 6;
-			this->textBox2->Text = L"1";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(249, 476);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(16, 17);
-			this->label3->TabIndex = 7;
-			this->label3->Text = L"h";
-			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(273, 477);
-			this->textBox3->Margin = System::Windows::Forms::Padding(4);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(51, 22);
-			this->textBox3->TabIndex = 8;
-			this->textBox3->Text = L"0,001";
-			// 
-			// textBox4
-			// 
-			this->textBox4->Location = System::Drawing::Point(291, 613);
-			this->textBox4->Margin = System::Windows::Forms::Padding(4);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(64, 22);
-			this->textBox4->TabIndex = 13;
-			this->textBox4->Text = L"1";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(217, 613);
-			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(48, 17);
-			this->label4->TabIndex = 12;
-			this->label4->Text = L"y_max";
-			// 
-			// textBox5
-			// 
-			this->textBox5->Location = System::Drawing::Point(292, 583);
-			this->textBox5->Margin = System::Windows::Forms::Padding(4);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(63, 22);
-			this->textBox5->TabIndex = 11;
-			this->textBox5->Text = L"0";
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(218, 583);
-			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(45, 17);
-			this->label5->TabIndex = 10;
-			this->label5->Text = L"y_min";
-			// 
-			// initial_u
-			// 
-			this->initial_u->Location = System::Drawing::Point(78, 504);
-			this->initial_u->Margin = System::Windows::Forms::Padding(4);
-			this->initial_u->Name = L"initial_u";
-			this->initial_u->Size = System::Drawing::Size(63, 22);
-			this->initial_u->TabIndex = 14;
-			this->initial_u->Text = L"1,0";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(26, 504);
-			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(34, 17);
-			this->label6->TabIndex = 15;
-			this->label6->Text = L"u(0)";
-			// 
-			// step_control
-			// 
-			this->step_control->AutoSize = true;
-			this->step_control->Location = System::Drawing::Point(896, 558);
-			this->step_control->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->step_control->Name = L"step_control";
-			this->step_control->Size = System::Drawing::Size(136, 21);
-			this->step_control->TabIndex = 17;
-			this->step_control->Text = L"With step control";
-			this->step_control->UseVisualStyleBackColor = true;
-			// 
-			// textBox7
-			// 
-			this->textBox7->Location = System::Drawing::Point(431, 476);
-			this->textBox7->Margin = System::Windows::Forms::Padding(4);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(80, 22);
-			this->textBox7->TabIndex = 19;
-			this->textBox7->Text = L"0,001";
-			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label8->Location = System::Drawing::Point(393, 478);
-			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(32, 17);
-			this->label8->TabIndex = 18;
-			this->label8->Text = L"Eps";
-			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label9->Location = System::Drawing::Point(25, 453);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(181, 20);
-			this->label9->TabIndex = 20;
-			this->label9->Text = L"Начальные условия:";
-			this->label9->Click += gcnew System::EventHandler(this, &MyForm::label9_Click);
-			// 
-			// label10
-			// 
-			this->label10->AutoSize = true;
-			this->label10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label10->Location = System::Drawing::Point(248, 453);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(46, 20);
-			this->label10->TabIndex = 21;
-			this->label10->Text = L"Шаг:";
-			// 
-			// label11
-			// 
-			this->label11->AutoSize = true;
-			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label11->Location = System::Drawing::Point(376, 453);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(250, 20);
-			this->label11->TabIndex = 22;
-			this->label11->Text = L"Параметр для контроля ЛП:";
-			this->label11->Click += gcnew System::EventHandler(this, &MyForm::label11_Click);
+			this->Column4->HeaderText = L"c2/";
+			this->Column4->MinimumWidth = 6;
+			this->Column4->Name = L"Column4";
+			this->Column4->Width = 50;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1243, 658);
-			this->Controls->Add(this->label11);
+			this->ClientSize = System::Drawing::Size(1514, 612);
 			this->Controls->Add(this->label10);
-			this->Controls->Add(this->label9);
-			this->Controls->Add(this->textBox7);
-			this->Controls->Add(this->label8);
+			this->Controls->Add(this->initial_iter);
 			this->Controls->Add(this->step_control);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->initial_eps);
+			this->Controls->Add(this->checkBox3);
+			this->Controls->Add(this->checkBox2);
+			this->Controls->Add(this->checkBox1);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->initial_u_der);
+			this->Controls->Add(this->label9);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label7);
+			this->Controls->Add(this->initial_b);
+			this->Controls->Add(this->initial_c);
+			this->Controls->Add(this->initial_a);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->initial_u);
-			this->Controls->Add(this->textBox4);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->initial_x);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button1);
@@ -404,6 +526,7 @@ namespace Graph {
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -414,15 +537,15 @@ namespace Graph {
 
 		GraphPane^ panel = zedGraphControl1->GraphPane;
 		panel->CurveList->Clear();
-		PointPairList^ true_list = gcnew ZedGraph::PointPairList();
-		PointPairList^ num_list = gcnew ZedGraph::PointPairList();
+		PointPairList^ u_der_u_list = gcnew ZedGraph::PointPairList();
+		PointPairList^ u_x_list = gcnew ZedGraph::PointPairList();
+		PointPairList^ u_der_x_list = gcnew ZedGraph::PointPairList();
 
 		// Интервал, где есть данные
-		double xmin = Convert::ToDouble(initial_x->Text);
+		double xmin = Convert::ToDouble(textBox1->Text);
 		double xmax = Convert::ToDouble(textBox2->Text);
 
 		double step = Convert::ToDouble(textBox3->Text);
-		double eps = Convert::ToDouble(textBox7->Text);
 
 
 		double xmin_limit = xmin - 0.1;
@@ -434,68 +557,82 @@ namespace Graph {
 		// Список точек
 		int i = 0;
 		dataGridView1->Rows->Clear();
-		double u0 = Convert::ToDouble(initial_u->Text);
-		double u0_num = u0;
+	
 
-		true_list->Add(xmin, u0);
-		num_list->Add(xmin, u0);
+		double y1 = Convert::ToDouble(initial_u->Text);
+		double y2 = Convert::ToDouble(initial_u_der->Text);
+		double eps = Convert::ToDouble(initial_eps->Text);
+		double max_Iter = Convert::ToDouble(initial_iter->Text);
 
-		double y_funtion_1_RK_4;
-		double y_function_1;
+		//Параметры второй задачи
+		parameter param;
+		param.a = Convert::ToDouble(initial_a->Text);
+		param.b = Convert::ToDouble(initial_b->Text);
+		param.c = Convert::ToDouble(initial_c->Text);
+		
+		if(checkBox1->Checked)
+			u_der_u_list->Add(y1, y2);
+		if (checkBox2->Checked)
+			u_x_list->Add(xmin, y1);
+		if (checkBox3->Checked)
+			u_der_x_list->Add(xmin, y2);
+
 		std::vector<double> new_point;
-
-		while (true)
+		double c1_multipl = 0, c2_division = 0;
+		while(true)
 		{
+
+			//std::vector<double> y_funtion_1_RK_4 = utils::runge_kutta_4_system(
+				//utils::calc_func_1,
+			//	utils::calc_func_2,
+			//	step, xmin, y1, y2, param);
+
 			if (step_control->Checked == true)
 			{
-				new_point = utils::next_point_with_step_conrol(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+				new_point = utils::next_point_with_step_control(utils::runge_kutta_4_system, utils::calc_func_1, utils::calc_func_2, xmin, y1, y2, step, eps, param, max_Iter);
 			}
 			else
 			{
-				new_point = utils::next_point(utils::runge_kutta_4, utils::function_1_derivative, xmin, u0_num, step, eps);
+				new_point = utils::next_point(utils::runge_kutta_4_system, utils::calc_func_1, utils::calc_func_2, xmin, y1, y2, step, param);
 			}
-			
 			xmin = new_point[0];
-			y_funtion_1_RK_4 = new_point[1];
-			y_function_1     = utils::function_1(xmin, u0);
-
-
-			true_list->Add(xmin, y_function_1);
-			num_list->Add(xmin, y_funtion_1_RK_4);
-
-			dataGridView1->Rows->Add();
-			dataGridView1->Rows[i]->Cells[0]->Value = xmin;
-			dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
-			dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
-			dataGridView1->Rows[i]->Cells[3]->Value = floor((y_function_1 - y_funtion_1_RK_4)*1000)/1000;
-			u0_num = y_funtion_1_RK_4;
-			step = new_point[2];
-			i++;
 			if (xmin > xmax)
 				break;
 
+			double y1_next = new_point[1];
+			double y2_next = new_point[2];
+
+			//Добавление на график
+			/*f1_list->Add(x, y_function_1);*/
+			if (checkBox1->Checked)
+				u_der_u_list->Add(y1, y2);
+			if (checkBox2->Checked)
+				u_x_list->Add(xmin, y1);
+			if (checkBox3->Checked)
+				u_der_x_list->Add(xmin, y2);
+
+			//Печать в таблицу
+			dataGridView1->Rows->Add();
+			dataGridView1->Rows[i]->Cells[0]->Value = xmin;
+			dataGridView1->Rows[i]->Cells[1]->Value = y1_next ;
+			/*dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;*/
+			dataGridView1->Rows[i]->Cells[2]->Value = floor(y2_next * 1000) / 1000;
+			dataGridView1->Rows[i]->Cells[3]->Value = new_point[5]; //вывод у1 с половинным шагом
+			dataGridView1->Rows[i]->Cells[4]->Value = new_point[4]; //вывод текущего шага
+			dataGridView1->Rows[i]->Cells[5]->Value = new_point[7]; //вывод оценки погрешности
+			dataGridView1->Rows[i]->Cells[6]->Value = c1_multipl; //вывод количества умножений шага
+			dataGridView1->Rows[i]->Cells[7]->Value = c2_division += new_point[9]; //вывод количества делений шага
+			c1_multipl += new_point[8];
+
+			y1 = y1_next;
+			y2 = y2_next;
+			step = new_point[3];
+			i++;
 		}
 
-		//for (double x = xmin + step; x <= xmax; x += step)
-		//{
-		//	double y_function_1 = utils::function_1(x);
-		//	double y_funtion_1_RK_4 = utils::runge_kutta_4(utils::function_1_derivative, step, x, y0);
-
-		//	//Добавление на график
-		//	f1_list->Add(x, y_function_1);
-		//	f2_list->Add(x, y_funtion_1_RK_4);
-		//	//Печать в таблицу
-		//	dataGridView1->Rows->Add();
-		//	dataGridView1->Rows[i]->Cells[0]->Value = x;
-		//	dataGridView1->Rows[i]->Cells[1]->Value = floor(y_function_1 * 1000) / 1000;
-		//	dataGridView1->Rows[i]->Cells[2]->Value = floor(y_funtion_1_RK_4 * 1000) / 1000;
-		//	y0 = y_funtion_1_RK_4;
-		//	i++;
-		//}
-		
-
-		LineItem^ Curve1 = panel->AddCurve("Точное решение", true_list, Color::Red,SymbolType::None);
-		LineItem^ Curve2 = panel->AddCurve("Численное решение", num_list, Color::Blue, SymbolType::None);
+		LineItem Curve1 = panel->AddCurve("u'(u)", u_der_u_list, Color::Red,SymbolType::None);
+		LineItem^ Curve2 = panel->AddCurve("u(x)", u_x_list, Color::Blue, SymbolType::None);
+		LineItem^ Curve3 = panel->AddCurve("u'(x)", u_der_x_list, Color::Green, SymbolType::None);
 
 		// Устанавливаем интересующий нас интервал по оси X
 		panel->XAxis->Scale->Min = xmin_limit;
@@ -516,28 +653,8 @@ namespace Graph {
 	private: System::Void zedGraphControl1_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	
-	GraphPane^ panel = zedGraphControl1->GraphPane;
-	double xmin = Convert::ToDouble(textBox5->Text);
-	double xmax = Convert::ToDouble(textBox4->Text);
-	// Устанавливаем интересующий нас интервал по оси X
-	panel->XAxis->Scale->Min = xmin;
-	panel->XAxis->Scale->Max = xmax;
 
-	// Вызываем метод AxisChange (), чтобы обновить данные об осях. 
-	// В противном случае на рисунке будет показана только часть графика, 
-	// которая умещается в интервалы по осям, установленные по умолчанию
-	zedGraphControl1->AxisChange();
-	// Обновляем график
-	zedGraphControl1->Invalidate();
-
-}
-private: System::Void label9_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

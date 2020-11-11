@@ -1,8 +1,13 @@
 #pragma once
 
 #include <functional>
-#include <vector>
 #include <cmath>
+#include <vector>
+
+struct parameter
+{
+	double a, b, c;
+};
 
 namespace utils
 {
@@ -10,29 +15,26 @@ namespace utils
 	// Type aliases
 	//
 
-	typedef std::function<double(double, double)> ddd_function;
-	typedef std::function<double(ddd_function, double, double, double)> num_method;
+	typedef std::function<double(double, double, double, parameter)> dddp_function;
+	typedef std::function<std::vector<double>(dddp_function, dddp_function, double, double, double, double, parameter)> num_method;
 
 	//
 	// User defined functions
 	//
-
-	double function_1(double x, double y0);
-	double function_1_derivative(double x, double y);
+	double calc_func_1(double x, double y1, double y2, parameter param /* =0 */);
+	double calc_func_2(double x, double y1, double y2, parameter param /* =0 */);
 
 	//
 	// Numerical methods
 	//
 
-	double runge_kutta_4(ddd_function func_der, double step, double x, double y);
+	std::vector<double> runge_kutta_4_system(
+		dddp_function calc_func_1,
+		dddp_function calc_func_2,
+		double step, double x, double y1, double y2, parameter param);
 
-	//
-	// Usefull functions
-	//
-
-	
-	std::vector<double> next_point(num_method method, ddd_function func,
-								   double x, double y, double step, double eps);	
-	std::vector<double> next_point_with_step_conrol(num_method method, ddd_function func,
-													double x, double y, double step, double eps);
+	std::vector<double> next_point(num_method method, dddp_function func1, dddp_function func2,
+		double x, double y1, double y2, double step, parameter param);
+	std::vector<double> next_point_with_step_control(num_method method, dddp_function func1, dddp_function func2,
+		double x, double y1, double y2, double step, double eps, parameter param, double max_Iter);
 }
